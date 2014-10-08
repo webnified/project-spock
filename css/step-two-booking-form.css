@@ -1,0 +1,132 @@
+.input-radio
+{
+    display: block;
+
+    width: 15px;
+    margin: 0 auto;
+}
+.price
+{
+    text-align: center;
+}
+.price-list > .list-item
+{
+    padding-top: 20px;
+    padding-bottom: 20px;
+
+    border-right: 1px solid #aaa;
+}
+.inclusion-list
+{
+    padding-left: 40px;
+
+    list-style: disc;
+
+    text-align: left;
+}
+.inclusion-lists
+{
+    margin-bottom: 30px;
+    padding-top: 15px;
+    padding-bottom: 20px;
+
+    border-top: 1px solid #aaa;
+    border-bottom: 1px solid #aaa;
+    background-color: #eee;
+}
+.inclusion-list > .list-item
+{
+    padding-bottom: 10px;
+}
+.price-list > .list-item:last-child
+{
+    border-right: none;
+}
+.price-per-pax
+{
+    margin-bottom: 5px;
+}
+.view-inclusions
+{
+    font-weight: lighter;
+    font-style: italic;
+
+    color: #adadad;
+    border-bottom: 1px solid #dbdbdb;
+}
+.view-inclusions:hover
+{
+    text-decoration: none;
+}
+.package-price-list .name
+{
+    margin-bottom: 0;
+}
+.inclusion-lists h3
+{
+    margin-top: 0;
+    padding-left: 10px;
+}
+.modal-form
+{
+    margin: 20px auto;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    width: 600px;
+    padding-left: 0;
+    padding-right: 0;
+}
+.package-selected
+{
+    margin-top: 0;
+}
+
+.inclusion-lists.arrow-first-price:after,
+.inclusion-lists.arrow-first-price:before
+{
+    left: 17%;
+}
+
+.inclusion-lists.arrow-second-price:after,
+.inclusion-lists.arrow-second-price:before
+{
+    left: 50%;
+}
+
+.inclusion-lists.arrow-third-price:after,
+.inclusion-lists.arrow-third-price:before
+{
+    left: 83%;
+}
+
+.inclusion-lists:after,
+.inclusion-lists:before
+{
+    position: absolute;
+    bottom: 100%;
+
+    width: 0;
+    height: 0;
+
+    content: ' ';
+    pointer-events: none;
+
+    border: solid transparent;
+}
+
+.inclusion-lists:after
+{
+    margin-left: -10px;
+
+    border-width: 10px;
+    border-color: rgba(198, 194, 213, 0);
+    border-bottom-color: #eee;
+}
+.inclusion-lists:before
+{
+    margin-left: -11px;
+
+    border-width: 11px;
+    border-color: rgba(194, 225, 245, 0);
+    border-bottom-color: #aaa;
+}
