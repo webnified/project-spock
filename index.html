@@ -1,10 +1,21 @@
-<html>
+<html ng-app="Spoon">
   <head>
     <link rel="stylesheet" type="text/css" href="css/workforce.css">
     <link rel="stylesheet" type="text/css" href="css/footer.css">
     <link rel="stylesheet" type="text/css" href="css/image-style.css">
     <link rel="stylesheet" type="text/css" href="css/navigator.css">
     <link rel="stylesheet" type="text/css" href="css/grid.css">
+
+
+  <script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+  
+  <script type="text/javascript" src='js/app/app.js'></script>
+
+  <script type="text/javascript" src='js/controller/booking-form-controller.js'></script>
+
+  <script type="text/javascript" src='js/directive/booking-form-directive.js'></script>
+
   </head><body>
   <section class="container">
   <section id="header">
@@ -58,6 +69,9 @@
       </section>
     </section>
   </section>
+
+    <section booking-form></section>
+  
   <section class="container">
     <section class="footer-inner-container">
       <section class="row">
@@ -119,7 +133,6 @@
 </section>
 </section>
 </section>
-<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
-<script src="lib/script.js"></script>
+<!--script src="http://code.jquery.com/jquery-1.11.0.min.js"></script-->
+<!--script src="lib/script.js"></script-->
 </body></html>

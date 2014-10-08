@@ -11,15 +11,15 @@
   </div>
 
   <div class="tabs">
-    <div class="tab"><a class="active" href="#">Customer Details</a></div>
+    <div class="tab"><a class="active" href="#"> Customer Details</a></div>
     <div class="tab"><a href="#">Order Details</a></div>
     <div class="tab"><a href="#">Select Cuisine</a></div>
     <div class="tab"><a href="#">Review</a></div>
   </div>
 
   <!-- Customer details -->
-  <div class="customer-details row">
-    <form action="" class="form">
+  <div ng-show="tab===1" class="customer-details row">
+    <form action="" class="form" name="CustomerDetails">
     <h2 class="small">Customer Details</h2>
     <div class="col-md-12">
 
@@ -30,7 +30,7 @@
             </div>
           </div>
           <div class="col-md-8">
-            <input type="text" name="customerName" class="form-input" placeholder="To Appear in Official Receipt">
+            <input type="text" name="customerName" class="form-input" placeholder="To Appear in Official Receipt" ng-model='formFields.companyName' required>
           </div>
         </div>
 
@@ -41,7 +41,7 @@
             </div>
           </div>
           <div class="col-md-8">
-            <input type="text" name="contactPerson" class="form-input" placeholder="Complete Name">
+            <input type="text" name="contactPerson" class="form-input" placeholder="Complete Name" ng-model='formFields.contactPerson' required>
           </div>
         </div>
 
@@ -52,7 +52,7 @@
             </div>
           </div>
           <div class="col-md-8">
-            <input type="text" name="mobileNo" class="form-input" placeholder="Globe, Sun or Smart">
+            <input type="text" name="mobileNo" class="form-input" placeholder="Globe, Sun or Smart" ng-model='formFields.mobileNo' required>
           </div>
         </div>
 
@@ -63,7 +63,7 @@
             </div>
           </div>
           <div class="col-md-8">
-            <input type="text" name="customerCardNo" class="form-input" placeholder="(Optional)">
+            <input type="text" name="customerCardNo" class="form-input" placeholder="(Optional)" ng-model='formFields.customerCard' required>
           </div>
         </div>
 
@@ -74,12 +74,12 @@
             </div>
           </div>
           <div class="col-md-8">
-            <input type="text" name="discountCertNo" class="form-input" placeholder="(Optional)">
+            <input type="text" name="discountCertNo" class="form-input" placeholder="(Optional)" ng-model='formFields.discount' required>
           </div>
         </div>
 
       <div class="col-md-12">
-        <button class="btn btn-primary">
+        <button class="btn btn-primary" ng-click="setTab(2)">
           <span class="calm">Continue to</span> Order Details
         </button>
       </div>
@@ -89,7 +89,7 @@
   </div>
 
   <!-- Order details -->
-  <div class="order-details row">      
+  <div ng-show="tab===2" class="order-details row" name="OrderDetails">      
     <h2 class="small">Order Details</h2>
     <form action="" class="form">
         <div class="col-md-12">
@@ -100,7 +100,7 @@
               </div>
             </div>
             <div class="col-md-8">
-              <input type="text" name="noPax" class="form-input" placeholder="Final Guest Count to Book">
+              <input type="text" name="noPax" class="form-input" placeholder="Final Guest Count to Book" ng-model='formFields.pax'>
             </div>
           </div>
           <div class="input-group">
@@ -110,7 +110,7 @@
               </div>
             </div>
             <div class="col-md-8">
-              <input type="date" name="servingDate" class="form-input" placeholder="">
+              <input type="date" name="servingDate" class="form-input" placeholder="" ng-model='formFields.servingData'>
             </div>
           </div>
           <div class="input-group">
@@ -120,7 +120,7 @@
               </div>
             </div>
             <div class="col-md-8">
-              <input type="time" name="servingTime" class="form-input" placeholder="">
+              <input type="time" name="servingTime" class="form-input" placeholder="" ng-model='formFields.servingTime'>
             </div>
           </div>
           <div class="input-group">
@@ -130,13 +130,13 @@
               </div>
             </div>
             <div class="col-md-8">
-              <input type="text" name="completeAddress" class="form-input" placeholder="Provide Landmarks if Possible">
+              <input type="text" name="completeAddress" class="form-input" placeholder="Provide Landmarks if Possible" ng-model='formFields.address'>
             </div>
           </div>
         </div>
 
         <div class="col-md-12">
-          <button class="btn btn-primary">
+          <button class="btn btn-primary" ng-click="setTab(3)">
             <span class="calm">Continue to</span> Cuisine Selection
           </button>
         </div>
@@ -145,7 +145,7 @@
   </div>
 
   <!-- Select menu -->
-  <div class="select-menu">
+  <div ng-show='tab===3' class="select-menu">
     <form action="" class="form">
         <h2 class="small">Select Cuisine</h2>
         <div class="col-md-6">
@@ -256,7 +256,7 @@
         </div>
 
         <div class="col-md-12">
-          <button class="btn btn-primary">
+          <button class="btn btn-primary" ng-click="setTab(4)">
             <span class="calm">Continue to</span> Review
           </button>
         </div>
@@ -266,7 +266,7 @@
   </div>
   
   <!-- Review -->
-  <div class="review">
+  <div ng-show='tab===4' class="review">
     <h2 class="small col-md-12">Review</h2>
     <div class="customer-details-info col-md-4">
       <ul class="unstyled">
