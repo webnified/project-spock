@@ -79,6 +79,8 @@
 
     width: 100%;
     padding-bottom: 30px;
+
+    position: relative;
 }
 .form-input
 {
@@ -86,7 +88,7 @@
     height: 35px;
     padding: 5px 15px;
 
-    border: 1px solid #9E9E9E;
+    border: 1px solid #9e9e9e;
     border-radius: 5px;
     background: #ddd;
     background:    -moz-linear-gradient(top,  #ddd 0%, #fff 45%, #fff 100%);
@@ -133,7 +135,7 @@
 }
 .btn:hover
 {
-    border: 1px solid #4B4B4B;
+    border: 1px solid #4b4b4b;
 }
 
 .btn-primary
@@ -179,4 +181,126 @@ ul li > .label
     font-weight: bold;
 
     color: #aaa;
+}
+
+.form-input-wrapper {
+    position: relative;
+}
+.btn-select-cuisine {
+    font-size: 12px;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    padding: 5px;
+    height: 25px;
+    line-height: 1;
+    background: #ECECEC;
+    font-family: "Gibson", sans-serif;
+    font-weight: lighter;
+}
+.package-ordered {
+    margin-bottom: 30px;
+    border-bottom: 1px solid #AAA;
+    padding-bottom: 15px;
+}
+.package-ordered .name, .package-ordered .price {
+    font-weight: bold;
+}
+.package-ordered .expand {
+    padding-right: 30px;
+    float: right;
+}
+.cuisine-selection {
+    position: absolute;
+    z-index: 1;
+    width: 670px;
+    right: 0;
+    top: 50px;
+    border: 1px solid #AAA;
+    border-radius: 5px;
+}
+.cuisine-lists {
+    padding: 20px;
+    background: #FFFFFF;
+}
+.cuisine-list .list-item {
+    display: inline-block;
+    padding: 10px;
+    position: relative;
+    margin-bottom: 10px;
+}
+.cuisine-list .list-item.selected {
+    background-color: #D5B786;
+    border-radius: 5px;
+}
+.cuisine-list .list-item .checkmark-container {
+    content: " ";
+    height: 65px;
+    width: 75px;
+    background-color: #D5B786;
+    display: block;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    border-radius: 5px;
+}
+.cuisine-list .list-item:hover {
+    background-color: #D5B786;  
+    border-radius: 5px;
+}
+
+.checkmark {
+    display:inline-block;
+    width: 40px;
+    height:40px;
+    
+    -ms-transform: rotate(45deg); /* IE 9 */
+    -webkit-transform: rotate(45deg); /* Chrome, Safari, Opera */
+    transform: rotate(45deg);
+    position: absolute;
+    right: 15px;
+    bottom: 15px;
+}
+
+.stem {
+    position: absolute;
+    width:2px;
+    height:35px;
+    background-color:#000;
+    left:22px;
+    top:0px;
+}
+
+.kick {
+    position: absolute;
+    width:22px;
+    height:2px;
+    background-color:#000;
+    left:2px;
+    top:35px;
+}
+
+.cuisine-selection:after, .cuisine-selection:before {
+    bottom: 100%;
+    left: 91%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+    
+}
+
+.cuisine-selection:after {
+    border-color: rgba(255, 255, 255, 0);
+    border-bottom-color: #fff;
+    border-width: 10px;
+    margin-left: -10px;
+}
+.cuisine-selection:before {
+    border-color: rgba(170, 170, 170, 0);
+    border-bottom-color: #aaa;
+    border-width: 11px;
+    margin-left: -11px;
 }
