@@ -2,16 +2,16 @@ li {
 	list-style-type: none;
 }
 
-.image-wrapper {
+.header-image-wrapper {
 	margin:0;
 	background-color: black;
 	width: inherit;
 }
 
-.food-tray {
+.header-food-tray {
 	display: inline;
 }
 
-.img-size {
+.header-img-size {
 	width: 23%;
 }

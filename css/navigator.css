@@ -7,7 +7,7 @@ a {
 	text-decoration: none;
 	color: black;
 }
-.row.navigator {
+.header-navigator {
 	width: inherit;
 	height: 320px;
 	background-image: url('../img/header/menu-bg.png');
@@ -18,7 +18,7 @@ a {
 	margin-top: -115;
 }
 
-.comp-logo {
+.header-comp-logo {
 	width: 100%;
 	/* position: relative;
 	top: -60px;
@@ -27,7 +27,7 @@ a {
 	padding-right: 18px; */
 }
 
-.col-md-12.position-logo {
+.header-position-logo {
 	width: 100%;
 	margin: 0px;
 	position: relative;
@@ -36,15 +36,15 @@ a {
  
 }
 
-.row.image-wrapper {
+.header-image-wrapper {
 margin-left: 0px;
 }
 
-.list-icon {
+.header-list-icon {
 	width: 80%;
 }
 
-.book-online {
+.header-book-online {
 	position: absolute;
 	display: block;
 	background-color: #E3CCA7;
@@ -72,7 +72,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e0c9a4', end
 	font-size: 24px;
 }
 
-.book-quote > p {
+.header-book-quote > p {
 	font-weight: bold;
 }
 
@@ -80,12 +80,12 @@ section.col-md-6 {
 	margin-right: -6px;
 }
 
-section.col-md-4.col-icon.first-set-icon {
+.header-first-set-icon {
 	margin-left: 44px;
 	margin-top: 100px;
 }
 
-section.col-md-4.col-icon.second-set-icon {
+.header-second-set-icon {
 	margin-left: -47px;
 	margin-top: 100px;
 }
