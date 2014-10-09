@@ -1,9 +1,7 @@
-<link rel="stylesheet" href="css/grid.css">
-<link rel="stylesheet" href="css/modal-form.css">
-<div class="modal-form" id="booking-form">
+<div class="modal-form" id="booking-form-three" ng-show="isShownThird">
 
   <div class="close-btn">
-    <a href="#">x</a>
+    <a href="">x</a>
   </div>
 
   <div class="headline">
@@ -11,10 +9,10 @@
   </div>
 
   <div class="tabs">
-    <div class="tab"><a class="active" href="#"> Customer Details</a></div>
-    <div class="tab"><a href="#">Order Details</a></div>
-    <div class="tab"><a href="#">Select Cuisine</a></div>
-    <div class="tab"><a href="#">Review</a></div>
+    <div class="tab"><a class="active" href="" ng-click="setTab(1)"> Customer Details</a></div>
+    <div class="tab"><a href="" ng-click="setTab(2)">Order Details</a></div>
+    <div class="tab"><a href="" ng-click="setTab(3)">Select Cuisine</a></div>
+    <div class="tab"><a href="" ng-click="setTab(4)">Review</a></div>
   </div>
 
   <!-- Customer details -->

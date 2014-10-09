@@ -5,16 +5,34 @@
     <link rel="stylesheet" type="text/css" href="css/image-style.css">
     <link rel="stylesheet" type="text/css" href="css/navigator.css">
     <link rel="stylesheet" type="text/css" href="css/grid.css">
-
+    <link rel="stylesheet" href="css/grid.css">
+    <link rel="stylesheet" href="css/booking-form.css">
+    <link rel="stylesheet" href="css/step-1-booking-form.css">
+    <link rel="stylesheet" href="css/step-two-booking-form.css">
+    <link rel="stylesheet" href="css/modal-form.css">
 
   <script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
   
   <script type="text/javascript" src='js/app/app.js'></script>
 
-  <script type="text/javascript" src='js/controller/booking-form-controller.js'></script>
+  <script type="text/javascript" src='js/factory/image-factory.js'></script>
+  <script type="text/javascript" src='js/factory/tab-factory.js'></script>
+  <script type="text/javascript" src='js/factory/chosen-package-factory.js'></script>
 
+  <script type="text/javascript" src='js/service/booking-package-service.js'></script>
+
+  <script type="text/javascript" src='js/controller/book-online-controller.js'></script>
+  <script type="text/javascript" src='js/controller/step-one-booking-form-controller.js'></script>
+  <script type="text/javascript" src='js/controller/booking-form-controller.js'></script>
+  <script type="text/javascript" src='js/controller/booking-form-parent-controller.js'></script>
+  <script type="text/javascript" src='js/controller/step-two-booking-form-controller.js'></script>
+
+  <script type="text/javascript" src='js/directive/book-online-directive.js'></script>
+  <script type="text/javascript" src='js/directive/booking-form-parent-directive.js'></script>
   <script type="text/javascript" src='js/directive/booking-form-directive.js'></script>
+  <script type="text/javascript" src='js/directive/step-one-booking-form-directive.js'></script>
+  <script type="text/javascript" src='js/directive/step-two-booking-form-directive.js'></script>
 
   </head><body>
   <section class="container">
@@ -48,10 +66,8 @@
 
       <section class="col-md-4 col-logo">
         <section class="row">
-         <section class="col-md-12 position-logo ">
-          <img src="img/header/s&amp;p-logo.png" alt="" class="comp-logo">
-          <a href="#"><span class="book-online">Book Online</span></a>
-         </section>
+        <section book-online></section>
+        
         </section>
       </section>
 
@@ -69,9 +85,17 @@
       </section>
     </section>
   </section>
+    
+      
+    <section booking-form-parent>
+      
+      <section step-one-booking-form></section>
+      <section step-two-booking-form></section>
+      <section booking-form></section>
 
-    <section booking-form></section>
-  
+    </section>
+    
+    
   <section class="container">
     <section class="footer-inner-container">
       <section class="row">
