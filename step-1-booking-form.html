@@ -1,0 +1,38 @@
+<div class="modal-form package-selection" id="booking-form-one" style='width:700px' ng-show="isShownFirst">
+  <div class="close-btn">
+    <a href="#">x</a>
+  </div>
+  <div class="headline">
+    <h2 class="name">Package Selection</h2>
+  </div>
+  
+  <!-- Package lists -->
+  <div class="row">
+    
+    <form action="" class="form col-md-12">
+      <ul class="package-list unstyled">
+        <li class="list-item row">
+          <section ng-repeat="packages in Data">
+              <div class="col-md-1">
+                <input type="radio" name="packages.name" class="form-input input-radio" ng-click="setPackages( packages, packages.name )">
+              </div>
+              <div class="package col-md-11">
+                <h3 class="name">{{packages.name}}</h3>
+                <p class="desc">{{packages.description}}</p>
+                <a href="#" class="view-inclusions">View Inclusions</a>
+                <div class="inclusion-lists col-md-12">
+                  <ul class="inclusion-list col-md-6" ng-repeat="inclusions in packages.inclusions">
+                    <li class="list-item">{{inclusions}}</li>
+                  </ul>
+                 </div>
+               </div>
+          </section>
+                </ul>
+                  <div class="col-md-12">
+                    <button class="btn btn-primary" ng-disabled="firstFlag" ng-click="setbookingFirstStep()">
+                    <span class="calm">Continue to</span> Cuisine Selection
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>

@@ -1,0 +1,41 @@
+
+<div class="modal-form package-price-list" id="booking-form-two" ng-show="isShownSecond">
+  <div class="close-btn">
+    <a href="">x</a>
+  </div>
+  <section>
+      <div class="headline">
+        <h2 class="name">Package Price</h2>
+        <h3 class="package-selected">Package: {{setPackage.name}}</h3>
+      </div>
+      
+      <!-- Price list -->
+      <ul class="price-list unstyled col-md-12">
+        <li class="list-item col-md-4" ng-repeat="package in setPackage.packages | orderBy:id:true">
+          
+          
+          <div class="price row">
+            <img src="http://placehold.it/150x150">
+            <h3 class="price-per-pax">{{package.title}}</h3>
+            
+            <input type="radio" name="package.title" class="form-input input-radio" ng-click="setTabPackage( package.items,package.menu, package.id, package.title, package.price )">
+            <a href="" class="view-inclusions">View inclusions details</a></div>
+          </li>          
+      </ul>
+      <section ng-repeat="package in setPackage.packages | orderBy:id:true">
+        <div class="inclusion-lists arrow-first-price col-md-12">
+          <h3>Inclusions</h3>
+          <ul class="inclusion-list col-md-6" ng-repeat="inclusions in package.items">
+              <section>
+                <li class="list-item">{{inclusions.itemName}}</li>
+              </section>
+            
+          </ul>
+        </div>
+      </section>
+      
+  </section>
+  <div class="col-md-12">
+    <button class="btn btn-primary" ng-disabled="secondFlag" ng-click="setbookingSecondStep( )">
+    <span class="calm">Proceed to </span>Booking Details</button>
+  </div></div>
