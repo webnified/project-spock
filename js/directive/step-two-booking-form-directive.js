@@ -8,7 +8,7 @@ Spoon.directive( 'stepTwoBookingForm',
 				
 				"templateUrl": 'step-2-booking-form.html', 
 				"link": function link( scope, element, attribute ){
-					console.log(attribute);
+					
 				
 				}
 			}

@@ -11,6 +11,7 @@ Spoon.controller( 'bookingFormController',
 		$scope.formFields = {
 					companyName: "",
 					contactPerson: "",
+					email: "",
 					mobileNo: "",
 					customerCard: "",
 					discount: "",
@@ -53,8 +54,34 @@ Spoon.controller( 'bookingFormController',
 			chosenPackageFactory.setAcceptMenuAndCuisine();
 			chosenPackageFactory.setAccepts();
 			chosenPackageFactory.setacceptPackageAndMail();
-			console.log( chosenPackageFactory.getAccepts() );
 			console.log( chosenPackageFactory.getacceptPackageAndMail() );
+
+
+
+			
+			var mockData = chosenPackageFactory.getacceptPackageAndMail();
+			var cuisines = mockData[0][1][1].join( ", " );
+			$scope.actualData = {
+					"email": mockData[0][2].email,
+					"fullname": mockData[0][2].contacPerson,
+					"data":{
+						"message": "Ordered Package: " + mockData[0][0][0] + "\n" + 
+									"Ordered Price: " + mockData[0][0][1] + "\n" + 
+									"Email Content: " + "\n\n\n\n" + 
+									"Name: " + mockData[0][2].companyName + "\n" + 
+									"Contact Person: " + mockData[0][2].contactPerson + "\n" + 
+									"Address: " + mockData[0][2].address + "\n" + 
+									"Email: " + mockData[0][2].email + "\n" + 
+									"Mobile Number:" + mockData[0][2].mobileNo + "\n" + 
+									"PAX:" + mockData[0][2].pax + "\n" + 
+									"Certificate:" + mockData[0][2].certificate + "\n" + 
+									"Discount:" + mockData[0][2].discount + "\n" + 
+									"Serving Date:" + mockData[0][2].servingDate + "\n" + 
+									"Serving Time:" + mockData[0][2].seringTime + "\n"
+					} 
+				};
+			console.log( $scope.actualData );
+
 		}
 	}
 ] )

@@ -16,6 +16,12 @@ Spoon.factory( 'chosenPackageFactory',
 			var chosenPackage ="";
 			
 			var orderFlag = 0;
+
+
+
+			/*********Email********/
+
+			
 			
 			return {
 					setPackageName: function setPackageName( name ){
