@@ -79,9 +79,8 @@ Spoon.controller( 'bookingFormController',
 									"Serving Date:" + mockData[0][2].servingDate + "\n" + 
 									"Serving Time:" + mockData[0][2].seringTime + "\n"
 					} 
-				};
-			console.log( $scope.actualData );
-
+				};				
+			sendEmail($scope.actualData , false);
 		}
 	}
 ] )
