@@ -27,5 +27,9 @@ Spoon.controller( 'stepTwoBookingFormController',
 				angular.element("#booking-form-three").scope().showThird();
 
 			};
+			$scope.tabStepTwoInclusionsShow = function tabStepTwoInclusionsShow( num ){
+				$scope.tabStepTwoInclusions = num;
+				console.log(num);
+			};
 		}
 	] );

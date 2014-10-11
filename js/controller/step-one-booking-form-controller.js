@@ -37,5 +37,9 @@ Spoon.controller( 'stepOneBookingFormController',
 				angular.element("#booking-form-two").scope().showSecond();
 
 			};
+
+			$scope.tabInclusionsShow = function tabInclusionsShow( num ){
+				tabInclusions = num;
+			};
 		}
 	] );

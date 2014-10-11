@@ -19,13 +19,13 @@
             <h3 class="price-per-pax">{{package.title}}</h3>
             
             <input type="radio" name="package.title" class="form-input input-radio" ng-click="setTabPackage( package.items,package.menu, package.id, package.title, package.price )">
-            <a href="" class="view-inclusions">View inclusions details</a></div>
+            <a href="" class="view-inclusions" ng-click="tabStepTwoInclusionsShow( package.id )">View inclusions details</a></div>
           </li>          
       </ul>
       <section ng-repeat="package in setPackage.packages | orderBy:id:true">
-        <div class="inclusion-lists arrow-first-price col-md-12">
+        <div class="inclusion-lists arrow-first-price col-md-12" ng-show="tabStepTwoInclusions===package.id">
           <h3>Inclusions</h3>
-          <ul class="inclusion-list col-md-6" ng-repeat="inclusions in package.items">
+          <ul class="inclusion-list col-md-6" ng-repeat="inclusions in package.items" >
               <section>
                 <li class="list-item">{{inclusions.itemName}}</li>
               </section>

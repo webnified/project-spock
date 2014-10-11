@@ -19,7 +19,7 @@
               <div class="package col-md-11">
                 <h3 class="name">{{packages.name}}</h3>
                 <p class="desc">{{packages.description}}</p>
-                <a href="#" class="view-inclusions">View Inclusions</a>
+                <a href="#" class="view-inclusions" ng-click="tabInclusionsShow( packages.id )">View Inclusions</a>
                 <div class="inclusion-lists col-md-12">
                   <ul class="inclusion-list col-md-6" ng-repeat="inclusions in packages.inclusions">
                     <li class="list-item">{{inclusions}}</li>

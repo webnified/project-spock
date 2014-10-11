@@ -36,8 +36,8 @@ Spoon.factory( 'chosenPackageFactory',
 					getPriceTag: function getPriceTag(){
 						return packagePrice;
 					},
-					setMenu: function setMenu( menuName ){
-						menu = menuName;
+					setMenu: function setMenu( index, menuName ){
+						menu[ index ] = menuName;
 					},
 					getMenu: function getMenu(  ){
 						return menu;
@@ -112,6 +112,13 @@ Spoon.factory( 'chosenPackageFactory',
 					orderAnother: function orderAnother(){
 						orderFlag+=1;
 						Accepts = [];
+						packageName = "";
+						packagePrice = 0;
+						menu = "";
+						chosenCuisine = [];
+
+						acceptPackageAndPrice=[];
+						acceptMenuAndCuisine = [];
 					}
 				}
 

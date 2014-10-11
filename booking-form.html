@@ -8,14 +8,14 @@
     <h2 class="name">Booking Details</h2>
   </div>
   <div class="tabs">
-    <div class="tab"><a class="active" href=""  ng-click="setTab(1)">Customer Details</a></div>
-    <div class="tab"><a href="" ng-click="setTab(2)">Order Details</a></div>
-    <div class="tab"><a href="" ng-click="setTab(3)">Select Cuisine</a></div>
-    <div class="tab"><a href="" ng-click="setTab(4)">Review</a></div>
+    <div class="tab"><a href="" ng-class="{'active':checkPackage(1)}" ng-click="setTab(1)">Customer Details</a></div>
+    <div class="tab"><a href="" ng-class="{'active':checkPackage(2)}" ng-click="setTab(2)">Order Details</a></div>
+    <div class="tab"><a href="" ng-class="{'active':checkPackage(3)}" ng-click="setTab(3)">Select Cuisine</a></div>
+    <div class="tab"><a href="" ng-class="{'active':checkPackage(4)}" ng-click="setTab(4)">Review</a></div>
   </div>
   <!-- Customer details -->
   <div ng-show="tab===1" class="customer-details row">
-    <form action="" class="form">
+    <form action="" class="form" name="bookingFormOne" no-validate>
       <h2 class="small">Customer Details</h2>
       <div class="col-md-12">
         <div class="input-group">
@@ -35,7 +35,7 @@
             </div>
           </div>
           <div class="col-md-8">
-            <input type="text" name="contactPerson" class="form-input" placeholder="Complete Name" ng-model='formFields.contactPerson' required>
+            <input type="text" name="namePerson" class="form-input" placeholder="Complete Name" ng-model='formFields.contactPerson' required>
           </div>
         </div>
         <div class="input-group">
@@ -45,7 +45,7 @@
             </div>
           </div>
           <div class="col-md-8">
-            <input type="text" name="emailPerson" class="form-input" placeholder="Complete Name" ng-model='formFields.email' required>
+            <input type="text" name="emailPerson" class="form-input" placeholder="Email" ng-model='formFields.email' required>
           </div>
         </div>
         <div class="input-group">
@@ -65,7 +65,7 @@
             </div>
           </div>
           <div class="col-md-8">
-            <input type="text" name="customerCardNo" class="form-input" placeholder="(Optional)" ng-model='formFields.customerCard' required>
+            <input type="text" name="customerCardNo" class="form-input" placeholder="(Optional)" ng-model='formFields.customerCard' >
           </div>
         </div>
         <div class="input-group">
@@ -75,11 +75,11 @@
             </div>
           </div>
           <div class="col-md-8">
-            <input type="text" name="discountCertNo" class="form-input" placeholder="(Optional)" ng-model='formFields.discount' required>
+            <input type="text" name="discountCertNo" class="form-input" placeholder="(Optional)" ng-model='formFields.discount' >
           </div>
         </div>
         <div class="col-md-12">
-          <button class="btn btn-primary" ng-click="setTab(2)">
+          <button class="btn btn-primary" ng-click="setTab(2)" ng-disabled="bookingFormOne.$invalid">
           <span class="calm">Continue to</span> Order Details
           </button>
         </div>
@@ -89,7 +89,7 @@
   <!-- Order details -->
   <div ng-show='tab===2' class="order-details row">
     <h2 class="small">Order Details</h2>
-    <form action="" class="form">
+    <form action="" class="form" name="bookingFormTwo" no-validate>
       <div class="col-md-12">
         <div class="input-group">
           <div class="col-md-4">
@@ -98,7 +98,7 @@
             </div>
           </div>
           <div class="col-md-8">
-            <input type="text" name="noPax" class="form-input" placeholder="Final Guest Count to Book" ng-model='formFields.pax'>
+            <input type="text" name="noPax" class="form-input" placeholder="Final Guest Count to Book" ng-model='formFields.pax' required>
           </div>
         </div>
         <div class="input-group">
@@ -108,7 +108,7 @@
             </div>
           </div>
           <div class="col-md-8">
-            <input type="date" name="servingDate" class="form-input" placeholder="" ng-model='formFields.servingDate'>
+            <input type="date" name="servingDate" class="form-input" placeholder="" ng-model='formFields.servingDate' required>
           </div>
         </div>
         <div class="input-group">
@@ -118,7 +118,7 @@
             </div>
           </div>
           <div class="col-md-8">
-            <input type="time" name="servingTime" class="form-input" placeholder="" ng-model='formFields.servingTime'>
+            <input type="time" name="serving" class="form-input" placeholder="" ng-model='formFields.servingTime' required>
           </div>
         </div>
         <div class="input-group">
@@ -128,19 +128,19 @@
             </div>
           </div>
           <div class="col-md-8">
-            <input type="text" name="completeAddress" class="form-input" placeholder="Provide Landmarks if Possible" ng-model='formFields.address'>
+            <input type="text" name="completeAddress" class="form-input" placeholder="Provide Landmarks if Possible" ng-model='formFields.address' required>
           </div>
         </div>
       </div>
       <div class="col-md-12">
-        <button class="btn btn-primary" ng-click="setTab(3)">
+        <button class="btn btn-primary" ng-click="setTab(3)" ng-disabled="bookingFormTwo.$invalid">
         <span class="calm">Continue to</span> Cuisine Selection
         </button>
       </div>
     </form>
   </div>
   <div ng-show='tab===3' class="select-menu">
-    <form action="" class="form">
+    <form action="" class="form" name="bookingFormThree" no-validate>
       <h2 class="small">Select Cuisine</h2>
       <div class="col-md-12">
         <div class="package-ordered">Order #1: <span class="name">{{setPackage.name}}</span> - <span class="price" ng-hide="true">P185</span> <a class="expand">more details</a></div>
@@ -167,19 +167,35 @@
           </div>
           <div class="col-md-8">
             <div class="form-input-wrapper">
-              <input type="text" name="item" ng-model="chosenCuisine[$index]" class="form-input" disabled="">
+              <input type="text" name="item" ng-model="chosenCuisine[$index]" class="form-input" disabled="" required>
               <button class="btn btn-select-cuisine" ng-click='setSelectedCuisine( $index )'>Select cuisine</button>
             </div>
+          </div>
+          <div>
+            <section ng-show="">
+                <div class="col-md-4">
+                  <div class="label">
+                    <label>{{item.itemName}}</label>
+                  </div>
+                </div>
+                <div class="col-md-8">
+                  <div class="form-input-wrapper">
+                    <input type="text" name="item"  class="form-input" disabled="" required>
+                    <button class="btn btn-select-cuisine" ng-click='setSelectedCuisine( $index )'>Select cuisine</button>
+                  </div>
+                </div>
+                <div>
+            </section>
           </div>
         </div>
       </div>
   <div class="col-md-8 col-md-offset-4">
-    <button class="btn btn-default btn-small">
+    <button class="btn btn-default btn-small" ng-click="bookAnother()">
     <span class="calm">Add another package +</span>
     </button>
   </div>
   <div class="col-md-12">
-    <button class="btn btn-primary" ng-click="setTab(4)">
+    <button class="btn btn-primary" ng-click="setTab(4)" ng-disable="bookingFormThree.$invalid">
     <span class="calm">Continue to</span> Review
     </button>
   </div>

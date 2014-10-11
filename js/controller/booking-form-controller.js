@@ -20,9 +20,11 @@ Spoon.controller( 'bookingFormController',
 					servingTime: "",
 					address: "",
 					certificate: "",
-					data : []
 
 			};
+		$scope.checkTab = function checkTab( num ){
+			return tab === num;
+		};
 
 		$scope.packageAndPrice = chosenPackageFactory.getAcceptPackageAndPrice();
 		$scope.showThird = function showThird(){
@@ -40,7 +42,7 @@ Spoon.controller( 'bookingFormController',
 		};
 
 		$scope.selectedItemClick = function selectedItemCLick( index, cuisine, cuisineName ){
-			chosenPackageFactory.setMenu( cuisine );
+			chosenPackageFactory.setMenu( index, cuisine );
 			chosenPackageFactory.setChosenCuisine( index, cuisineName );
 			$scope.chosenCuisine = chosenPackageFactory.getChosenCuisine();
 			console.log( index );
@@ -60,27 +62,68 @@ Spoon.controller( 'bookingFormController',
 
 			
 			var mockData = chosenPackageFactory.getacceptPackageAndMail();
-			var cuisines = mockData[0][1][1].join( ", " );
-			$scope.actualData = {
-					"email": mockData[0][2].email,
-					"fullname": mockData[0][2].contacPerson,
-					"data":{
-						"message": "Ordered Package: " + mockData[0][0][0] + "\n" + 
-									"Ordered Price: " + mockData[0][0][1] + "\n" + 
-									"Email Content: " + "\n\n\n\n" + 
-									"Name: " + mockData[0][2].companyName + "\n" + 
-									"Contact Person: " + mockData[0][2].contactPerson + "\n" + 
-									"Address: " + mockData[0][2].address + "\n" + 
-									"Email: " + mockData[0][2].email + "\n" + 
-									"Mobile Number:" + mockData[0][2].mobileNo + "\n" + 
-									"PAX:" + mockData[0][2].pax + "\n" + 
-									"Certificate:" + mockData[0][2].certificate + "\n" + 
-									"Discount:" + mockData[0][2].discount + "\n" + 
-									"Serving Date:" + mockData[0][2].servingDate + "\n" + 
-									"Serving Time:" + mockData[0][2].seringTime + "\n"
-					} 
-				};				
+			
+			$scope.actualData = dataIteratorAndJSONConverter( mockData );
 			sendEmail($scope.actualData , false);
-		}
+			console.log( $scope.actualData );
+
+			function dataIteratorAndJSONConverter( dataToConvert ){
+				for( var index = 0; index<=dataToConvert.length; index++ ){
+
+					var cuisines = dataToConvert[ index ][ 1 ][ 1 ].join( ", " );
+
+					if( index===0 ){
+						var actualData = {
+							"email": dataToConvert[0][2].email,
+							"fullname": dataToConvert[0][2].contacPerson,
+							"data":{
+								"message":  "Ordered Package: " + dataToConvert[0][0][0] + "\n" + 
+											"Ordered Price: " + dataToConvert[0][0][1] + "\n" + 
+											"Email Content: " + "\n\n\n\n" + 
+											"Name: " + dataToConvert[0][2].companyName + "\n" + 
+											"Contact Person: " + dataToConvert[0][2].contactPerson + "\n" + 
+											"Address: " + dataToConvert[0][2].address + "\n" + 
+											"Email: " + dataToConvert[0][2].email + "\n" + 
+											"Mobile Number:" + dataToConvert[0][2].mobileNo + "\n" + 
+											"PAX:" + dataToConvert[0][2].pax + "\n" + 
+											"Certificate:" + dataToConvert[0][2].certificate + "\n" + 
+											"Discount:" + dataToConvert[0][2].discount + "\n" + 
+											"Serving Date:" + dataToConvert[0][2].servingDate + "\n" + 
+											"Serving Time:" + dataToConvert[0][2].seringTime + "\n" +
+											"Chosen Cuisines: " + cuisines
+								}
+						};
+					}else{
+						cuisines = dataToConvert[ index ][ 1 ][ 1 ].join( ", " );
+						console.log( cuisines );
+						actualData.message+= "\n\n" + "" + cuisines;
+					}
+					console.log( cuisines );
+					return actualData;
+						
+				}
+			}
+			$scope.isShownThird = !$scope.isShownThird;
+		};
+
+		$scope.bookAnother = function bookAnother(){
+			$scope.setTab(1);
+			chosenPackageFactory.setAcceptMenuAndCuisine();
+			chosenPackageFactory.setAccepts();
+			chosenPackageFactory.setacceptPackageAndMail();
+			chosenPackageFactory.orderAnother();
+			$scope.chosenCuisine = "";
+			$scope.isShownThird = !$scope.isShownThird;
+			angular.element("#booking-form-one").scope().showFirst();
+		};
 	}
-] )
+] );
+/*
+function iterateAll ( array ) {
+	var message = "";
+ 	iterate array {
+ 		message += mes;
+ 	}
+ 	return message;
+}
+*/

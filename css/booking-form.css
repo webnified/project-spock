@@ -11,7 +11,12 @@
     border-radius: 5px;
     background-color: #fff;
 }
-
+.ng-invalid.ng-dirty{
+    border-color: #FA787E;
+}
+.ng-valid.ng-dirty{
+    border-color: #78FA89;
+}
 
 
 .close-btn
