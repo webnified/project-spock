@@ -2,8 +2,8 @@ Spoon.controller( 'stepOneBookingFormController',
 	[
 		'$scope',
 		'tabFactory',
-		'chosenPackageFactory',
-		function stepOneBookingFormCOntroller( $scope, tabFactory, chosenPackageFactory ){
+		'chosenPackageService',
+		function stepOneBookingFormCOntroller( $scope, tabFactory, chosenPackageService ){
 
 			$scope.firstFlag = true;
 			$scope.isShownFirst = false;
@@ -17,13 +17,13 @@ Spoon.controller( 'stepOneBookingFormController',
 			};
 			$scope.setPackage = "";
 
-			$scope.setPackages = function setPackages( package, name ){
+			$scope.setPackages = function setPackages( package ){				
 				$scope.firstFlag = false;
 				$scope.setPackage = package;
 				tabFactory.setBookFormSteps();
-				chosenPackageFactory.setPackageName( name );
+				chosenPackageService.setPackageName( package.name );
 
-				chosenPackageFactory.getPackageName( name );
+				console.log(chosenPackageService.getPackageName( package.name ));
 			};
 
 
@@ -31,11 +31,9 @@ Spoon.controller( 'stepOneBookingFormController',
 				console.log("as");
 			};
 
-			$scope.setbookingFirstStep = function setbookingFirstStep( ){
-				
+			$scope.setbookingFirstStep = function setbookingFirstStep( ){				
 				$scope.isShownFirst = !$scope.isShownFirst;
 				angular.element("#booking-form-two").scope().showSecond();
-
 			};
 
 			$scope.tabInclusionsShow = function tabInclusionsShow( num ){

@@ -14,7 +14,7 @@
         <li class="list-item row">
           <section ng-repeat="packages in Data">
               <div class="col-md-1">
-                <input type="radio" name="packages.name" class="form-input input-radio" ng-click="setPackages( packages, packages.name )">
+                <input type="radio" name="packages.name" class="form-input input-radio" ng-click="setPackages( packages )">
               </div>
               <div class="package col-md-11">
                 <h3 class="name">{{packages.name}}</h3>

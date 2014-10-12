@@ -1,8 +1,8 @@
 Spoon.controller( 'stepTwoBookingFormController',
 	[
 		'$scope',
-		'chosenPackageFactory',
-		function stepTwoBookingFormCOntroller( $scope, chosenPackageFactory ){
+		'chosenPackageService',
+		function stepTwoBookingFormCOntroller( $scope, chosenPackageService ){
 
 			$scope.secondFlag = true;
 			$scope.isShownSecond = false;
@@ -12,17 +12,16 @@ Spoon.controller( 'stepTwoBookingFormController',
 			$scope.showSecond = function showSecond(){
 				$scope.isShownSecond = !$scope.isShownSecond;
 			}
-			$scope.setTabPackage = function setTabPackage( item, menu, id, title, price ){
+			$scope.setTabPackage = function setTabPackage( item, menu, price ){
 				$scope.secondFlag = false;
 				$scope.menu = menu;
 				$scope.items = item;
-				chosenPackageFactory.setPriceTag( price );
+				chosenPackageService.setPriceTag( price );
+				console.log(chosenPackageService.getPriceTag( ));
 
 			};
 			$scope.setbookingSecondStep = function setbookingSecondStep(  ){
 				$scope.isShownSecond = !$scope.isShownSecond;
-
-				chosenPackageFactory.setAcceptPackageAndPrice();
 
 				angular.element("#booking-form-three").scope().showThird();
 

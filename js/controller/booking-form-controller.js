@@ -1,32 +1,34 @@
 Spoon.controller( 'bookingFormController', 
 [
 	'$scope',
-	'chosenPackageFactory',
-	function bookingFormController( $scope, chosenPackageFactory ){
+	'chosenPackageService',
+	function bookingFormController( $scope, chosenPackageService ){
 		$scope.tab = 1;
 		$scope.isShownThird = false;
 		$scope.selectedCuisine="";
 		$scope.selectIsMade = false;
+		$scope.count = 0;
+
+		$scope.mockData=[];
 
 		$scope.formFields = {
-					companyName: "",
-					contactPerson: "",
-					email: "",
-					mobileNo: "",
-					customerCard: "",
-					discount: "",
-					pax: "",
+					companyName: "Company",
+					contactPerson: "Jules Mercado",
+					email: "counterera@yahoo.com",
+					mobileNo: "09264502876",
+					customerCard: "123",
+					discount: "123",
+					pax: "123",
 					servingDate: "",
-					servingTime: "",
-					address: "",
-					certificate: "",
+					servingTime: "12:49",
+					address: "Macabalan",
+					certificate: "123",
 
 			};
 		$scope.checkTab = function checkTab( num ){
 			return tab === num;
 		};
 
-		$scope.packageAndPrice = chosenPackageFactory.getAcceptPackageAndPrice();
 		$scope.showThird = function showThird(){
 			$scope.isShownThird = !$scope.isShownThird;
 		};
@@ -42,79 +44,88 @@ Spoon.controller( 'bookingFormController',
 		};
 
 		$scope.selectedItemClick = function selectedItemCLick( index, cuisine, cuisineName ){
-			chosenPackageFactory.setMenu( index, cuisine );
-			chosenPackageFactory.setChosenCuisine( index, cuisineName );
-			$scope.chosenCuisine = chosenPackageFactory.getChosenCuisine();
-			console.log( index );
+			chosenPackageService.setMenu( index, cuisine );
+			chosenPackageService.setChosenCuisine( index, cuisineName );
+			$scope.chosenCuisine = chosenPackageService.getChosenCuisine();
+			console.log( $scope.chosenCuisine );
 		};
 
 		$scope.setEmail = function setEmail(){
-			chosenPackageFactory.setEmail( $scope.formFields );
+			chosenPackageService.setEmail( $scope.formFields );
+		};
+
+		$scope.bookAnother = function bookAnother(){
+			chosenPackageService.setAccepts();
+			$scope.mockData[ $scope.count ] = chosenPackageService.getTempAccept();
+
+			console.log( $scope.mockData );
+			$scope.chosenCuisine = "";
+
+			$scope.isShownThird = !$scope.isShownThird;
+
+			angular.element("#booking-form-one").scope().showFirst();
+			$scope.setTab(1);			
+			$scope.count++;
+			console.log($scope.count);
+
 		};
 
 		$scope.bookOrder = function bookOrder(){
-			chosenPackageFactory.setAcceptMenuAndCuisine();
-			chosenPackageFactory.setAccepts();
-			chosenPackageFactory.setacceptPackageAndMail();
-			console.log( chosenPackageFactory.getacceptPackageAndMail() );
-
-
-
 			
-			var mockData = chosenPackageFactory.getacceptPackageAndMail();
-			
-			$scope.actualData = dataIteratorAndJSONConverter( mockData );
+			chosenPackageService.setAccepts();			
+			$scope.mockData.push( chosenPackageService.getTempAccept() );
+
+			$scope.actualData = dataIteratorAndJSONConverter( $scope.mockData );
 			sendEmail($scope.actualData , false);
-			console.log( $scope.actualData );
+			console.log( $scope.mockData );
 
 			function dataIteratorAndJSONConverter( dataToConvert ){
-				for( var index = 0; index<=dataToConvert.length; index++ ){
+				for( var index = 0, count=1; index<=dataToConvert.length; index++ ){
 
-					var cuisines = dataToConvert[ index ][ 1 ][ 1 ].join( ", " );
+					
 
 					if( index===0 ){
+						var countTotalPrice = 0;
+							countTotalPrice += dataToConvert[ index ].price;
 						var actualData = {
-							"email": dataToConvert[0][2].email,
-							"fullname": dataToConvert[0][2].contacPerson,
+							"email": dataToConvert[ index ].mail,
+							"fullname": dataToConvert[ index ].mail.contactPerson,
 							"data":{
-								"message":  "Ordered Package: " + dataToConvert[0][0][0] + "\n" + 
-											"Ordered Price: " + dataToConvert[0][0][1] + "\n" + 
-											"Email Content: " + "\n\n\n\n" + 
-											"Name: " + dataToConvert[0][2].companyName + "\n" + 
-											"Contact Person: " + dataToConvert[0][2].contactPerson + "\n" + 
-											"Address: " + dataToConvert[0][2].address + "\n" + 
-											"Email: " + dataToConvert[0][2].email + "\n" + 
-											"Mobile Number:" + dataToConvert[0][2].mobileNo + "\n" + 
-											"PAX:" + dataToConvert[0][2].pax + "\n" + 
-											"Certificate:" + dataToConvert[0][2].certificate + "\n" + 
-											"Discount:" + dataToConvert[0][2].discount + "\n" + 
-											"Serving Date:" + dataToConvert[0][2].servingDate + "\n" + 
-											"Serving Time:" + dataToConvert[0][2].seringTime + "\n" +
-											"Chosen Cuisines: " + cuisines
-								}
+								"message":  "Ordered Package: " + dataToConvert[ index ].packageNamed + "\n" + 
+											"Ordered Price: " + dataToConvert[ index ].price + "\n" + 
+											"Email Content: " + "\n\n" + 
+											"Name: " + dataToConvert[ index ].mail.companyName + "\n" + 
+											"Contact Person: " + dataToConvert[ index ].mail.contactPerson + "\n" + 
+											"Address: " + dataToConvert[ index ].mail.address + "\n" + 
+											"Email: " + dataToConvert[ index ].mail.email + "\n" + 
+											"Mobile Number:" + dataToConvert[ index ].mail.mobileNo + "\n" + 
+											"PAX:" + dataToConvert[ index ].mail.pax + "\n" + 
+											"Certificate:" + dataToConvert[ index ].mail.certificate + "\n" + 
+											"Discount:" + dataToConvert[ index ].mail.discount + "\n" + 
+											"Serving Date:" + dataToConvert[ index ].mail.servingDate + "\n" + 
+											"Serving Time:" + dataToConvert[ index ].mail.servingTime + "\n" +
+											"Package 1 Chosen Cuisines: " + "\n" + dataToConvert[ index ].cuisine.join( ", " ) + " "
+							}
 						};
-					}else{
-						cuisines = dataToConvert[ index ][ 1 ][ 1 ].join( ", " );
-						console.log( cuisines );
-						actualData.message+= "\n\n" + "" + cuisines;
+						count+=1;
+						console.log( "1" );
+					}else if( index>0 ){
+						countTotalPrice += dataToConvert[ index ].price;
+						cuisines = dataToConvert[ index ].cuisine.join( ", " );
+						actualData.data.message+= "\n\n" + 
+												"Package "+ count + "\n"
+												"Ordered Package: " + dataToConvert[ index ].packageNamed + "\n" + 
+												"Ordered Price: " + dataToConvert[ index ].price + "\n" + 
+												"Chosen Cuisines:" + cuisines;
+						count+=1;
+						console.log( "Index is: " + index );
 					}
-					console.log( cuisines );
-					return actualData;
+					actualData.data.message += "Total Package Price: " + countTotalPrice;
+					return actualData
 						
 				}
 			}
 			$scope.isShownThird = !$scope.isShownThird;
-		};
-
-		$scope.bookAnother = function bookAnother(){
-			$scope.setTab(1);
-			chosenPackageFactory.setAcceptMenuAndCuisine();
-			chosenPackageFactory.setAccepts();
-			chosenPackageFactory.setacceptPackageAndMail();
-			chosenPackageFactory.orderAnother();
-			$scope.chosenCuisine = "";
-			$scope.isShownThird = !$scope.isShownThird;
-			angular.element("#booking-form-one").scope().showFirst();
 		};
 	}
 ] );

@@ -1,14 +1,10 @@
-Spoon.factory( 'chosenPackageFactory', 
+Spoon.service( 'chosenPackageService', 
 	[
-		function factory( ){
+		function service( ){
 			var Accepts 	= [];
-			var acceptPackageAndPrice = [];
-			var acceptMenuAndCuisine = [];
-			var acceptPackageAndMail = [];
-
 			var packageName = "";
 			var packagePrice = 0;
-			var menu = "";
+			var menu = [];
 			var chosenCuisine = [];
 
 			var emailContent = "";
@@ -16,6 +12,16 @@ Spoon.factory( 'chosenPackageFactory',
 			var chosenPackage ="";
 			
 			var orderFlag = 0;
+
+			var tempAccept = {
+					packageNamed: "",
+					price: 0,
+					menu: [],
+					cuisine: [],
+					mail: {} 
+				};
+
+			
 
 
 
@@ -25,41 +31,34 @@ Spoon.factory( 'chosenPackageFactory',
 			
 			return {
 					setPackageName: function setPackageName( name ){
-						packageName = name;
+						tempAccept.packageNamed = name;
+
 					},
 					getPackageName: function getPackageName(  ){
-						return packageName;
+						return tempAccept.packageNamed;
 					},
-					setPriceTag: function setPriceTag( price ){
-						packagePrice = price;
+					setPriceTag: function setPriceTag( pricetag ){
+						tempAccept.price = pricetag;
 					},
 					getPriceTag: function getPriceTag(){
-						return packagePrice;
+						return tempAccept.price;
 					},
 					setMenu: function setMenu( index, menuName ){
-						menu[ index ] = menuName;
+						
+						tempAccept.menu[ index ] = menuName;
 					},
 					getMenu: function getMenu(  ){
-						return menu;
+						return tempAccept.menu;
 					},
-					setCuisine: function setCuisine( cuisineName ){
-						cuisine = cuisineName;
-					},
-					getCuisine: function getCuisine(){
-						return cuisine;
-					},
+					
 					setChosenCuisine: function setChosenCuisine( menuIndex, cuisineName ){
-						chosenCuisine[ menuIndex ] = cuisineName;
+						tempAccept.cuisine[ menuIndex ] = cuisineName;
 					},
 					getChosenCuisine: function getChosenCuisine( ){
-						return chosenCuisine;
+						return tempAccept.cuisine;
 					},
 
 
-
-					setChosenPackage: function setChosenPackage( chosenPackage ){
-						chosenPackage = chosenPackage;
-					},
 
 
 					setAcceptPackageAndPrice: function setAcceptPackageAndPrice(){
@@ -69,56 +68,45 @@ Spoon.factory( 'chosenPackageFactory',
 						return acceptPackageAndPrice;
 					},
 
-
+					/*
 					setAcceptMenuAndCuisine : function setAcceptMenuAndCuisine(){
 						acceptMenuAndCuisine = [ menu, chosenCuisine ];
 					},
 					getAcceptManuAndCuisine: function setAcceptManuAndCuisine(){
 						return acceptMenuAndCuisine;
-					},
+					},*/
 
 
-					setAccepts: function setAccepts(){
-						Accepts = [ acceptPackageAndPrice, acceptMenuAndCuisine, emailContent ];
+					setAccepts: function setAccepts( num ){
+						if( Accepts.length <=0 ){
+							Accepts.push( tempAccept );
+						}else{
+							Accepts.splice( 0, 1, tempAccept );
+						}
+						
 					},
 					getAccepts: function getAccepts(){
 						return Accepts;
 					},
 
+					getTempAccept: function getTempAccept(){
+						return tempAccept;
+					},
+
 
 					setEmail: function setEmail( formContent ){
 						emailContent = formContent;
+						tempAccept.mail = emailContent;
 					},
 					getEmail: function getEmail(){
 						return emailContent;
 					},
 
-					setacceptPackageAndMail: function setacceptPackageAndMail(){
-
-						if( acceptPackageAndMail.length<=orderFlag ){
-						
-							acceptPackageAndMail.push( Accepts );
-						
-						}if( acceptPackageAndMail.length>=orderFlag ){
-						
-							acceptPackageAndMail.splice( orderFlag, 1, Accepts );
-						
-						}
-					},
-					getacceptPackageAndMail: function getacceptPackageAndMail(){
-						return acceptPackageAndMail;
-					},
 					
 					orderAnother: function orderAnother(){
 						orderFlag+=1;
-						Accepts = [];
-						packageName = "";
-						packagePrice = 0;
-						menu = "";
 						chosenCuisine = [];
-
-						acceptPackageAndPrice=[];
-						acceptMenuAndCuisine = [];
+						
 					}
 				}
 
