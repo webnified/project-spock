@@ -1,0 +1,38 @@
+.package .desc
+{
+    margin-bottom: 5px;
+}
+.package-list
+{
+    padding-right: 60px;
+    padding-left: 60px;
+}
+.package-list .list-item .name
+{
+    font-size: 20px;
+
+    margin-top: 2px;
+    margin-bottom: 5px;
+}
+.package-list > .list-item
+{
+    padding-bottom: 45px;
+
+    list-style-type: none;
+}
+.inclusion-lists
+{
+    font-size: 13px;
+
+    margin-top: 15px;
+    padding-top: 20px;
+    padding-bottom: 15px;
+
+    border: 1px solid #d1d1d1;
+    border-radius: 5px;
+    background-color: #eee;
+}
+.view-inclusions
+{
+    text-decoration: none;
+}
